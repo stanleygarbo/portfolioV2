@@ -1,0 +1,1 @@
+export const gradient = 'background-image:linear-gradient(135deg,#1CCAD8,#00B295,#06D6A0);'
