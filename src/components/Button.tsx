@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import {gradient} from './styles/gradient'
 import {motion} from 'framer-motion'
 
-export const Button = styled(motion.button)<{padding:string,shadowTop:string}>`
+export const Button = styled(motion.a)<{padding:string,shadowTop:string,margin:string}>`
     padding:${props=>props.padding};
     cursor:pointer;
     color:#fff;
@@ -10,10 +10,11 @@ export const Button = styled(motion.button)<{padding:string,shadowTop:string}>`
     ${gradient}
     font-size:1.2em;
     border-radius:100px;
-    margin-top:50px;
+    margin:${props=>props.margin};
     position:relative;
     transition:.3s ease-in-out;
     outline:none;
+    text-decoration:none;
     &::before{
         content:'';
         position:absolute;

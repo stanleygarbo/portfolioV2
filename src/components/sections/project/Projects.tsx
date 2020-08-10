@@ -3,10 +3,6 @@ import styled from 'styled-components'
 import Project from './Project'
 import { useStaticQuery, graphql } from 'gatsby'
 
-interface Props{
-    projects:object[]
-}
-
 const ProjectsContainer = styled.section`
     padding:100px 0px;
 `
@@ -32,6 +28,8 @@ const Projects = () => {
               title
               description
               techs
+              demo
+              code
               image{
                 childImageSharp{
                   fixed(width: 500, quality: 100){
@@ -48,10 +46,9 @@ const Projects = () => {
 
     return (
         <ProjectsContainer>
-            {console.log(projects)}
             <Title><span>01.</span> Projects</Title>
             {
-                projects.allMarkdownRemark.edges.map((project, index)=><Project key={index} projectNumber={index+1} data={project} />)
+                projects.allMarkdownRemark.edges.map((project:object, index:number)=><Project key={index} projectNumber={index+1} data={project} />)
             }
         </ProjectsContainer>
     )

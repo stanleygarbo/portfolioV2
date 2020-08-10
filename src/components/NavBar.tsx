@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {Link} from 'gatsby'
 import {Logo} from './Logo'
 import {motion,AnimatePresence} from 'framer-motion'
+import {gradient} from './styles/gradient'
 
 const Nav = styled.nav<{showNavBackground:boolean}>`
     width:100%;
@@ -27,23 +28,23 @@ const HamburgerContainer=styled.div`
     flex-direction:column;
     align-items:flex-end;
     justify-content:center;
+    z-index:4;
 `
 
 const HamburgerLine = styled.div<{slant:boolean,angle:string,width:string}>`
     width:${props=>props.slant? '50px' : props.width  };
     height:2px;
-    background:${props=>props.slant?'red':'#fff'};
+    ${gradient}
     transition:.3s ease-in-out;
     transform:rotate(${props=>props.slant && props.angle});
     margin: ${props=>props.slant ? '-1px 0px' : '5px 0px'};
-    z-index:4;
 `
 
 const Menu = styled(motion.div)`
     width:100%;
     height:100%;
     position:fixed;
-    background:#deeffd;
+    background:rgb(10,21,42);
     top:0;
     left:0;
     display:flex;
@@ -86,12 +87,24 @@ const NavBar = () => {
         return ()=> window.addEventListener('scroll',scrolled)
     },[])
 
+    useEffect(()=>{
+        if(openMenu){
+            document.body.style.overflowY = 'hidden'    
+        }
+        else{
+            document.body.style.overflowY = 'scroll'    
+        }
+    },[openMenu])
+
     const scrolled = () =>{
         setShowNavBackground(window.scrollY > 40)
     }
 
     const updateWindowSize = () =>{
         setwindowWidth(window.innerWidth)
+        if(window.innerWidth >= 740 ){
+            document.body.style.overflowY = 'scroll'    
+        }
     }
 
     return (
@@ -101,15 +114,14 @@ const NavBar = () => {
                 <HamburgerContainer onClick={()=>setOpenMenu(!openMenu)}>
                     <HamburgerLine slant={openMenu} angle='-45deg' width='50px'></HamburgerLine>
                     <HamburgerLine slant={openMenu} angle='45deg' width='30px'></HamburgerLine>
-                    {console.log(openMenu)}
                 </HamburgerContainer>
                 :    
-                <Links flexDirection='row' color='#fff'/>
+                <Links flexDirection='row' animate={false} />
             }
             <AnimatePresence>
                 {windowWidth<=740 && openMenu &&
                     <Menu variants={MenuVariants} initial={'hidden'} animate={'visible'} exit='exit' >
-                        <Links flexDirection='column' color='#222'/>
+                        <Links flexDirection='column' animate={true} />
                     </Menu>
                 }
             </AnimatePresence>
@@ -117,16 +129,15 @@ const NavBar = () => {
     )
 }
 
-const UnorderedList = styled.ul<{flexDirection:string,color:string}>`
+const UnorderedList = styled.ul<{flexDirection:string}>`
     display:flex;
     list-style-type:none;
     flex-direction:${props=>props.flexDirection};
     color:${props=>props.color};
 `
 
-const List = styled(motion.li)<{color:string}>`
+const List = styled(motion.li)`
     margin: 0px 10px 0px 0px;
-    border:2px solid ${props=>props.color};
     padding:5px 10px;
     @media (max-width:740px){
         margin: 30px 0px;
@@ -134,8 +145,7 @@ const List = styled(motion.li)<{color:string}>`
 `
 
 
-const StyledSpan = styled.span<{color:string}>`
-    color:${props=>props.color};
+const StyledSpan = styled.span`
     font-size:20px;
 `
 
@@ -148,7 +158,7 @@ const links = [
 
 interface LinkProps{
     flexDirection: string,
-    color:string,
+    animate:boolean
 }
 
 const LinkVariants = {
@@ -169,25 +179,17 @@ const LinkVariants = {
     }
 }
 
-const Links = ({flexDirection,color}:LinkProps) =>{
+const Links = ({flexDirection,animate}:LinkProps) =>{
     const LinkStyle = {
         textDecoration:'none',
-        color,
         margin: '0px 0px 0px 20px',
     }
 
-    const colors = [
-        'rgb(255,50,0)',
-        'rgb(255,80,0)',
-        'rgb(255,110,0)',
-        'rgb(255,140,0)',
-    ]
-
     return(
-        <UnorderedList flexDirection={flexDirection} color={color} >
+        <UnorderedList flexDirection={flexDirection} >
             {links.map((link,index)=>
-                <List key={index} variants={LinkVariants} color={colors[index]} initial='hidden' animate='visible' exit='exit' transition={{delay:index-0.8*index,type:'tween'}} >
-                    <Link to={link.href} style={LinkStyle} ><StyledSpan color={colors[index]} >0{index+1}. </StyledSpan>{link.name}</Link>
+                <List key={index} variants={animate && LinkVariants}  initial='hidden' animate='visible' exit='exit' transition={{delay:index-0.8*index,type:'tween'}} >
+                    <Link className='glowing__link' activeClassName='active__link' to={link.href} style={LinkStyle} ><StyledSpan >0{index+1}. </StyledSpan>{link.name}</Link>
                 </List>
             )}
         </UnorderedList>

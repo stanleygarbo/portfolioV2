@@ -2,9 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { GithubSVG, ArrowSVG } from '../../Social'
 import {gradient} from '../../styles/gradient'
+import Img from 'gatsby-image'
 
 interface Props{
-    techs:string[]
+    title:string,
+    description:string,
+    demo:string,
+    code:string,
+    techs:string
+    img:object
 }
 
 const Project = styled.div`
@@ -28,8 +34,8 @@ const ProjectLinks = styled.div`
     width:60px;
 `
 
-const ProjectImage = styled.div<{imageURL:string}>`
-    background:url(${props=>props.imageURL});
+const ProjectImage = styled.div`
+    overflow:hidden;
     position:relative;
     height:200px;
     width:300px;
@@ -47,6 +53,7 @@ const ProjectImage = styled.div<{imageURL:string}>`
         ${gradient}
         transition: .3s ease-in-out;
         opacity:0.7;
+        z-index:1;
     }
     &:hover::before{
         opacity:0;
@@ -55,20 +62,21 @@ const ProjectImage = styled.div<{imageURL:string}>`
 
 const ProjectDescription = styled.div`
     position:relative;
-    top:-60px;
+    top:-40px;
     background:rgb(40,81,142);
     padding:10px;
     margin:10px;
     box-shadow: 0px 15px 15px -10px rgba(0,0,0,0.5);
     border-radius:10px;
     background:rgb(20,31,52);
+    z-index:2;
 `
 
 const ProjectTechs = styled.ul`
     position:relative;
     display:flex;
     list-style-type:none;
-    top:-50px;
+    top:-30px;
     flex-wrap:wrap;
 `
 
@@ -81,20 +89,28 @@ const Tech = styled.li`
     font-size:14px;
 `
 
-const OtherProject = ({techs}:Props) => {
+const OtherProject = ({title,description,code,demo,img,techs}:Props) => {
+
+    const techArr = techs.split(',')
+
     return (
         <Project>
             <ProjectHeader>
-                <ProjectTitle>Keep Clone</ProjectTitle>
+                <ProjectTitle>{title}</ProjectTitle>
                 <ProjectLinks>
-                    <GithubSVG />
-                    <ArrowSVG/>
+                    <a href={code} target='blank'><GithubSVG /></a>
+                    <a href={demo} target='blank'><ArrowSVG/></a>
                 </ProjectLinks>
             </ProjectHeader>
-            <ProjectImage imageURL='https://stanleygarbo.engineer/static/media/google-keep-clone.11a8a092.png' ></ProjectImage>
-            <ProjectDescription>Pariatur aute sint occaecat eu proident ullamco quis consectetur ex quis laborum.</ProjectDescription>
+            <a href={demo} target='blank'>
+                <ProjectImage>
+                    <Img fixed={img}></Img>
+                </ProjectImage>
+            </a>
+            
+            <ProjectDescription>{description}</ProjectDescription>
             <ProjectTechs>
-                {techs?.map((tech,index)=>
+                {techArr?.map((tech,index)=>
                     <Tech key={index}>{tech}</Tech>
                 )}
             </ProjectTechs>

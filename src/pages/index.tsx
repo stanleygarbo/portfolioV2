@@ -30,7 +30,7 @@ export default function Home() {
       <AnimatePresence>
         {show && <Load/>}
       </AnimatePresence>
-      <Contact />
+      <Contact WholeViewPort={false} />
     </Layout>
   )
 }

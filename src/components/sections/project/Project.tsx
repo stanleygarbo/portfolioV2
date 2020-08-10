@@ -12,6 +12,8 @@ interface Props {
                 title:string,
                 description:string,
                 techs:string,
+                demo:string,
+                code:string,
                 image:{
                     childImageSharp:{
                         fixed:object
@@ -29,36 +31,6 @@ const ProjectContainer = styled.div`
     position:relative;
 ` 
 
-const ImageContainer = styled.div`
-    width:50%;
-    height:100%;
-    position:relative;
-    overflow:hidden;
-    &::before{
-        content:'';
-        position:absolute;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-        ${gradient}
-        transition: .3s ease-in-out;
-        opacity:0.7;
-        pointer-events:none;
-        z-index:1;
-    }
-    &:hover::before{
-        opacity:0;
-    }
-    @media (max-width:675px){
-        position:absolute;
-        width:100%; 
-        &::before{
-            background:rgb(0,11,32);
-            opacity:0.7;
-        }
-    }
-`
 
 const ProjectOverviewWrapper = styled.div`
     width:50%;
@@ -112,10 +84,15 @@ const Tech = styled.li`
     padding:2px 10px;
     border-radius:50px;
     font-size:14px;
+    margin:5px;
     @media (max-width:675px){
         background:none;
-        padding: 10px;
     }
+`
+
+const ButtonContainer = styled.div`
+    display:flex;
+    padding:20px 0px;
 `
 
 const Project = ({data,projectNumber}:Props) => {
@@ -125,11 +102,7 @@ const Project = ({data,projectNumber}:Props) => {
     return (
         <ProjectContainer>
             {projectNumber !== 2 && 
-                <ImageContainer >
-                    <Img 
-                        fixed={data.node.frontmatter.image.childImageSharp.fixed} 
-                    />
-                </ImageContainer>
+                <ImageLink link={data.node.frontmatter.demo} image={data.node.frontmatter.image.childImageSharp.fixed} />
             }
             <ProjectOverviewWrapper>
                 <ProjectOverview projectNumber={projectNumber}>
@@ -142,18 +115,70 @@ const Project = ({data,projectNumber}:Props) => {
                             </Tech>
                         )}
                     </ProjectTechs>
-                    <Button padding='5px 20px' shadowTop='5px' >View</Button>
+                    <ButtonContainer>
+                        {data.node.frontmatter.code && <Button href={data.node.frontmatter.code} target='blank' padding='5px 20px' shadowTop='5px' margin='0px 5px' >Code</Button>}
+                        {data.node.frontmatter.demo && <Button href={data.node.frontmatter.demo} target='blank' padding='5px 20px' shadowTop='5px' margin='0px 5px' >Demo</Button>}
+                    </ButtonContainer>
                 </ProjectOverview>
             </ProjectOverviewWrapper>
             {projectNumber === 2 && 
-                <ImageContainer >
-                    <Img 
-                        fixed={data.node.frontmatter.image.childImageSharp.fixed} 
-                    />
-                </ImageContainer>
+                <ImageLink link={data.node.frontmatter.demo} image={data.node.frontmatter.image.childImageSharp.fixed} />
             }
         </ProjectContainer>
     )
 }
+
+const ImageLinkWrapper = styled.a`
+    width:50%;
+    height:100%;
+    @media (max-width:675px){
+        position:absolute;
+        width:100%; 
+    }
+`
+
+const ImageContainer = styled.div`
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+    &::before{
+        content:'';
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        ${gradient}
+        transition: .3s ease-in-out;
+        opacity:0.7;
+        pointer-events:none;
+        z-index:1;
+    }
+    &:hover::before{
+        opacity:0;
+    }
+    @media (max-width:675px){
+        width:100%; 
+        &::before{
+            background:rgb(0,11,32);
+            opacity:0.9;
+        }
+    }
+`
+
+interface ImageLinkProps {
+    link:string,
+    image:object
+}
+
+const ImageLink = ({link,image}:ImageLinkProps) =>
+    <ImageLinkWrapper href={link}>
+        <ImageContainer >
+            <Img 
+                fixed={image} 
+            />
+        </ImageContainer>
+    </ImageLinkWrapper>
 
 export default Project

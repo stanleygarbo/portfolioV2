@@ -9,9 +9,12 @@ interface Props{
 const ParticlesContainer = styled.div<{height:string}>`
     top:0;
     left:0;
-    width:1200px;
+    width:100%;
     height:${props=>props.height};
     position:absolute;
+    @media (max-width:1200px){
+        width:1200px;
+    }
 `
 
 const ParticlesWrapper = styled.div`
@@ -32,8 +35,15 @@ const ParticlesComponent = ({height}:Props) => {
                     params={{
                         "particles": {
                             "number": {
-                                "value": 30
+                                "value": 60
                             },
+                            "color": {
+                                "value": ['#00ffff']
+                            },
+                            "line_linked": {
+                                "color": '#00ffff',
+                                "opacity": .4
+                            }
                         },
                     }}
                 />

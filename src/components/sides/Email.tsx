@@ -11,7 +11,7 @@ const Link = styled.a`
 const Email = () => {
     return (
         <Container WhichSide = 'right'>
-            <Link href='mailto:stanleygarbo@gmail.com'>stanleygarbo@gmail.com</Link>
+            <Link className='glowing__link' href='mailto:stanleygarbo@gmail.com'>stanleygarbo@gmail.com</Link>
             <Line/>
         </Container>
     )

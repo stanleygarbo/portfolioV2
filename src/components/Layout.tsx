@@ -37,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
     span{
         font-family: 'Roboto Mono', monospace;
     }
-    span,a:hover{
+    span,.glowing__link:hover,.active__link{
         ${gradient}
         background-clip: text;
         -webkit-background-clip: text;
