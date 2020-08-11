@@ -20,6 +20,16 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-manifest`
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Stanley Garbo - Portfolio`,
+        short_name: `Garbo`,
+        start_url: `/`,
+        background_color: `rgb(0,11,32)`,
+        theme_color: `rgb(0,11,32)`,
+        display: `standalone`,
+      },
+    }
   ],
 }

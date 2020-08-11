@@ -43,6 +43,9 @@ const GlobalStyle = createGlobalStyle`
         -webkit-background-clip: text;
         color: transparent;
     }
+    .active__link{
+        font-weight:900;
+    }
 `
 
 const Main = styled.main`

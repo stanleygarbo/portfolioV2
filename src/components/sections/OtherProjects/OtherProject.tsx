@@ -25,13 +25,13 @@ const ProjectHeader = styled.div`
 `
 
 const ProjectTitle = styled.h2`
-    margin: 0px 0px 20px 0px; 
+    margin: 0; 
 `
 
 const ProjectLinks = styled.div`
     display:flex;
     justify-content:space-between;
-    width:60px;
+    align-items:center;
 `
 
 const ProjectImage = styled.div`
@@ -89,6 +89,10 @@ const Tech = styled.li`
     font-size:14px;
 `
 
+const StyledLink = styled.a`
+
+`
+
 const OtherProject = ({title,description,code,demo,img,techs}:Props) => {
 
     const techArr = techs.split(',')
@@ -98,15 +102,15 @@ const OtherProject = ({title,description,code,demo,img,techs}:Props) => {
             <ProjectHeader>
                 <ProjectTitle>{title}</ProjectTitle>
                 <ProjectLinks>
-                    <a href={code} target='blank'><GithubSVG /></a>
-                    <a href={demo} target='blank'><ArrowSVG/></a>
+                    <StyledLink href={code} target='blank'><GithubSVG /></StyledLink>
+                    <StyledLink href={demo} target='blank'><ArrowSVG/></StyledLink>
                 </ProjectLinks>
             </ProjectHeader>
-            <a href={demo} target='blank'>
+            <StyledLink href={demo} target='blank'>
                 <ProjectImage>
-                    <Img fixed={img}></Img>
+                    <Img fixed={img} alt={title+' banner'} ></Img>
                 </ProjectImage>
-            </a>
+            </StyledLink>
             
             <ProjectDescription>{description}</ProjectDescription>
             <ProjectTechs>

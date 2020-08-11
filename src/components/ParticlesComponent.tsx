@@ -35,7 +35,7 @@ const ParticlesComponent = ({height}:Props) => {
                     params={{
                         "particles": {
                             "number": {
-                                "value": 60
+                                "value": 30
                             },
                             "color": {
                                 "value": ['#00ffff']

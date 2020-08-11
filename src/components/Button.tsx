@@ -27,7 +27,7 @@ export const Button = styled(motion.a)<{padding:string,shadowTop:string,margin:s
         border-radius:100px;
         filter:blur(10px);
         opacity:0.8;
-        transform:scale(.9);
+        transform:scale(.6);
         transition:.3s ease-in-out;
     }
     &:hover{

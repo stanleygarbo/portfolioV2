@@ -102,7 +102,7 @@ const Project = ({data,projectNumber}:Props) => {
     return (
         <ProjectContainer>
             {projectNumber !== 2 && 
-                <ImageLink link={data.node.frontmatter.demo} image={data.node.frontmatter.image.childImageSharp.fixed} />
+                <ImageLink link={data.node.frontmatter.demo} altText={data.node.frontmatter.demo} image={data.node.frontmatter.image.childImageSharp.fixed} />
             }
             <ProjectOverviewWrapper>
                 <ProjectOverview projectNumber={projectNumber}>
@@ -122,7 +122,7 @@ const Project = ({data,projectNumber}:Props) => {
                 </ProjectOverview>
             </ProjectOverviewWrapper>
             {projectNumber === 2 && 
-                <ImageLink link={data.node.frontmatter.demo} image={data.node.frontmatter.image.childImageSharp.fixed} />
+                <ImageLink link={data.node.frontmatter.demo} altText={data.node.frontmatter.demo} image={data.node.frontmatter.image.childImageSharp.fixed} />
             }
         </ProjectContainer>
     )
@@ -169,14 +169,16 @@ const ImageContainer = styled.div`
 
 interface ImageLinkProps {
     link:string,
-    image:object
+    image:object,
+    altText:string
 }
 
-const ImageLink = ({link,image}:ImageLinkProps) =>
-    <ImageLinkWrapper href={link}>
+const ImageLink = ({link,image,altText}:ImageLinkProps) =>
+    <ImageLinkWrapper href={link} target='blank' >
         <ImageContainer >
             <Img 
                 fixed={image} 
+                alt={altText+' banner'}
             />
         </ImageContainer>
     </ImageLinkWrapper>

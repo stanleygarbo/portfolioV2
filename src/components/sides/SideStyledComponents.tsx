@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
 
-export const Container = styled.div<{WhichSide:string}>`
+
+export const Container = styled(motion.div)<{WhichSide:string}>`
     position:fixed;
     height:100%;
     width:80px;

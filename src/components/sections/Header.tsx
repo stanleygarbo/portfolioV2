@@ -7,11 +7,20 @@ import {motion} from 'framer-motion'
 const HeadingVariants = {
     hidden:{
         opacity:0,
-        y:100
+        y:'50px'
     },
     visible:{
         opacity:1,
         y:0
+    }
+}
+
+const ButtonVariants = {
+    hidden:{
+        opacity:0
+    },
+    visible:{
+        opacity:1
     }
 }
 
@@ -71,7 +80,7 @@ const Header = () => {
             <HeadingTwo variants={HeadingVariants} initial='hidden' animate='visible' transition={{delay:2.4,type:'tween'}} color='#eaeaea'>Stanley Garbo</HeadingTwo>
             <HeadingThree variants={HeadingVariants} initial='hidden' animate='visible' transition={{delay:2.6,type:'tween'}} color='rgb(190,190,220)'>I Build Mesmerizing Websites</HeadingThree>
             <WhatIDo variants={HeadingVariants} initial='hidden' animate='visible' transition={{delay:2.8,type:'tween'}} >A Front-End Developer who mainly focuses on producing high-quality websites</WhatIDo>
-            <Button href='mailto:stanleygarbo@gmail.com' variants={HeadingVariants} initial='hidden' animate='visible' transition={{delay:3,type:'tween'}} padding='15px 30px' shadowTop='5px' margin='50px 0px 0px 0px' >Contact Me</Button>
+            <Button href='mailto:stanleygarbo@gmail.com' variants={ButtonVariants} initial='hidden' animate='visible' transition={{delay:3,type:'tween',duration:0.5}} padding='15px 30px' shadowTop='5px' margin='50px 0px 0px 0px' >Contact Me</Button>
         </HeaderComponent>
     )
 }

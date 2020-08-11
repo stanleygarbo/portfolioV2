@@ -10,10 +10,12 @@ const SocialContainer = styled.div<{flexDirection:string}>`
     flex-direction:${props=>props.flexDirection};
 `
 
+
+
 const Social = ({flexDirection}:Props) => {
     return (
         <SocialContainer flexDirection={flexDirection}>
-            <GithubSVG/>
+            <a href='https://github.com/stanleygarbo'><GithubSVG/></a>
             <LinkedInSVG/>
             <TwitterSVG/>
             <InstagramSVG/>
@@ -25,7 +27,7 @@ const SVGContainer = styled.div`
     width:25px;
     height:25px;
     fill:#fff;
-    margin:10px 0px;
+    margin:10px;
     &:hover{
         transform:scale(1.05);
     }

@@ -45,7 +45,7 @@ const Contact = ({WholeViewPort}:Props) => {
                 Send me a message, my inbox is always open and I'm currently free
             </Paragraph>
             <ParticlesComponent height='100%' />
-            <Button padding='15px 20px' shadowTop='5px' margin='50px 0px 0px 0px' >Message Me</Button>
+            <Button href='mailto:stanleygarbo@gmail.com' padding='15px 20px' shadowTop='5px' margin='50px 0px 0px 0px' >Message Me</Button>
         </Container>
     )
 }
