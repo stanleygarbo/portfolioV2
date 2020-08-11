@@ -5,6 +5,6 @@ description: This is a movie information site that pulls data from TMDB API. It 
 techs: ReactJS Redux Axios TMDB SwiperJS
 image: ./movie-surfer.png
 demo: https://movie-surfer.netlify.app
-code: https://github.com/movie-surfer
+code: https://github.com/stanleygarbo/movie-surfer
 ---
 
