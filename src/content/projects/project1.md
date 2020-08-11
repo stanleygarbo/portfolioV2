@@ -5,6 +5,6 @@ description: This was a Website I made that enables users to look and search for
 techs: ReactJS NextJS Axios SneakerDB
 image: ./sneaks.png
 demo: https://sneaks.vercel.app
-code: https://github.com/sneaks
+code: https://github.com/stanleygarbo/sneaks
 ---
 
