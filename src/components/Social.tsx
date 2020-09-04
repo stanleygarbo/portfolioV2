@@ -10,8 +10,6 @@ const SocialContainer = styled.div<{flexDirection:string}>`
     flex-direction:${props=>props.flexDirection};
 `
 
-
-
 const Social = ({flexDirection}:Props) => {
     return (
         <SocialContainer flexDirection={flexDirection}>
@@ -23,18 +21,19 @@ const Social = ({flexDirection}:Props) => {
     )
 }
 
-const SVGContainer = styled.div`
+const SVGContainer = styled.div<{disabled:boolean}>`
     width:25px;
     height:25px;
     fill:#fff;
     margin:10px;
+    ${props=>props.disabled && 'opacity:.3;cursor:not-allowed;'}
     &:hover{
         transform:scale(1.05);
     }
 `
 
 export const GithubSVG = () =>
-    <SVGContainer  >
+    <SVGContainer disabled={false} >
         <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
             x="0px" y="0px" viewBox="0 0 2350 2314.8" >
         <path d="M1175,0C525.8,0,0,525.8,0,1175c0,552.2,378.9,1010.5,890.1,1139.7c-5.9-14.7-8.8-35.3-8.8-55.8v-199.8H734.4
@@ -48,7 +47,7 @@ export const GithubSVG = () =>
     </SVGContainer>
 
 const LinkedInSVG = () =>
-    <SVGContainer  >
+    <SVGContainer disabled={true} >
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
              viewBox="0 0 430.117 430.117" >
             <path  id="LinkedIn" d="M430.117,261.543V420.56h-92.188V272.193c0-37.271-13.334-62.707-46.703-62.707
@@ -61,7 +60,7 @@ const LinkedInSVG = () =>
     </SVGContainer>
 
 const TwitterSVG = () =>
-    <SVGContainer>
+    <SVGContainer disabled={true}>
 
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
             viewBox="0 0 612 612"  >
@@ -76,7 +75,7 @@ const TwitterSVG = () =>
     </SVGContainer>
 
 const InstagramSVG =() =>
-    <SVGContainer >
+    <SVGContainer disabled={true}>
         <svg xmlns="http://www.w3.org/2000/svg"   
         viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" 
         strokeLinejoin="round">
@@ -90,7 +89,7 @@ const InstagramSVG =() =>
     </SVGContainer>
 
 export const ArrowSVG = () =>
-    <SVGContainer>
+    <SVGContainer disabled={false}>
         <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 194.818 194.818">
             <g>
                 <path fill="#fff" d="M185.818,2.161h-57.04c-4.971,0-9,4.029-9,9s4.029,9,9,9h35.312l-86.3,86.3c-3.515,3.515-3.515,9.213,0,12.728 c1.758,1.757,4.061,2.636,6.364,2.636s4.606-0.879,6.364-2.636l86.3-86.3v35.313c0,4.971,4.029,9,9,9s9-4.029,9-9v-57.04 C194.818,6.19,190.789,2.161,185.818,2.161z">

@@ -153,7 +153,6 @@ const links = [
     {name:'Home',href:'/'},
     {name:'Projects',href:'/projects'},
     {name:'Contact',href:'/contact'},
-    {name:'Blogs',href:'/blogs'},
 ] 
 
 interface LinkProps{
@@ -192,6 +191,9 @@ const Links = ({flexDirection,animate}:LinkProps) =>{
                     <Link className='glowing__link' activeClassName='active__link' to={link.href} style={LinkStyle} ><StyledSpan >0{index+1}. </StyledSpan>{link.name}</Link>
                 </List>
             )}
+            <List variants={animate && LinkVariants}  initial='hidden' animate='visible' exit='exit' transition={{delay:.6,type:'tween'}} >
+                <a style={LinkStyle} target='blank' className='glowing__link' href='https://drive.google.com/file/d/1h974XWPPqDDCvjm_7Lh1jdLPfZ14pOFO/view?usp=sharing'><StyledSpan >04. </StyledSpan>Resume</a>
+            </List>
         </UnorderedList>
     )
 }
