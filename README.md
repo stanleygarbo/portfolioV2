@@ -14,6 +14,6 @@
 
     gatsby develop
 
-Now go ahead and play with it
+Feel free to go ahead and play with it
 
 Demo: https://stanleygarbo.engineer
