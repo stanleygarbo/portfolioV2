@@ -2,15 +2,15 @@
 
 ## 🚀 Steps to get this working on your computer
 
-##### Assuming that you have already cloned the repo, run
+**Assuming that you have already cloned the repo, run** 
 
-    yarn add
+    yarn add 
 
-###### or
+**or** 
 
     npm install
 
-##### To start the app run
+**To start the app run**
 
     gatsby develop
 
